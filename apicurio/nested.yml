@@ -395,6 +395,35 @@ paths:
         type: string
       in: path
       required: true
+  /ones/{oneId}/_related/twos:
+    put:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/One'
+            examples:
+              One:
+                value:
+                  id: '{oneId}'
+                  title: some text
+                  created: 2018-02-10T09:30Z
+                  modified: 2018-02-10T09:30Z
+                  _related:
+                    Two:
+                    - id: 0
+                      one_id: '{oneId}'
+                      title: some text
+                      created: 2018-02-10T09:30Z
+                      modified: 2018-02-10T09:30Z
+                      _related:
+                        Three: []
+    parameters:
+    - name: oneId
+      schema:
+        type: integer
+      in: path
+      required: true
 components:
   schemas:
     One:
@@ -412,90 +441,7 @@ components:
         modified:
           type: string
         _related:
-          type: array
-          items: {}
-          properties:
-            Two:
-              type: array
-              items:
-                type: object
-                properties:
-                  id:
-                    format: int32
-                    type: integer
-                  one_id:
-                    format: int32
-                    type: integer
-                  title:
-                    type: string
-                  created:
-                    format: date-time
-                    type: string
-                  modified:
-                    type: string
-                  _related:
-                    type: object
-                    properties:
-                      Three:
-                        type: array
-                        items:
-                          type: object
-                          properties:
-                            id:
-                              format: int32
-                              type: integer
-                            two_id:
-                              format: int32
-                              type: integer
-                            title:
-                              type: string
-                            created:
-                              format: date-time
-                              type: string
-                            modified:
-                              type: string
-                            _related:
-                              type: object
-                              properties:
-                                Four:
-                                  type: array
-                                  items:
-                                    type: object
-                                    properties:
-                                      id:
-                                        format: int32
-                                        type: integer
-                                      three_id:
-                                        format: int32
-                                        type: integer
-                                      title:
-                                        type: string
-                                      created:
-                                        format: date-time
-                                        type: string
-                                      modified:
-                                        type: string
-                                      _related:
-                                        type: object
-                                        properties:
-                                          Five:
-                                            type: array
-                                            items:
-                                              type: object
-                                              properties:
-                                                id:
-                                                  format: int32
-                                                  type: integer
-                                                four_id:
-                                                  format: int32
-                                                  type: integer
-                                                title:
-                                                  type: string
-                                                created:
-                                                  format: date-time
-                                                  type: string
-                                                modified:
-                                                  type: string
+          description: ""
       example:
         id: "11"
         title: Title of number one
