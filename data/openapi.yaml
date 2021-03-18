@@ -1,283 +1,6651 @@
-openapi: "3.0.0"
+openapi: 3.0.0
 info:
-  version: 1.0.0
-  title: Kordused
+  description: >-
+    JavaRemoteEE1gp API documentation. Created in the framework of JavaRemoteEE1
+    online courses (SDAcademy, Estonia) as a potential API for the common final
+    project of students
+  version: 0.0.1
+  title: JavaRemoteEE1gp API
+  contact:
+    name: Jaanus Nurmoja
+    email: jaanus.nurmoja@gmail.com
+    url: 'https://facebook.com/jaanus.nurmoja'
   license:
-    name: MIT
-servers:
-  - url: http://localhost:8080/kordused/v3
+    name: CC NC-SA 4.0
+    url: 'https://creativecommons.org/licenses/by-nc/4.0/'
+tags:
+  - name: account-resource
+    description: Account Resource
+  - name: activity-info-resource
+    description: Activity Info Resource
+  - name: activity-item-info-resource
+    description: Activity Item Info Resource
+  - name: activity-item-involved-resource
+    description: Activity Item Involved Resource
+  - name: activity-item-resource
+    description: Activity Item Resource
+  - name: activity-resource
+    description: Activity Resource
+  - name: address-resource
+    description: Address Resource
+  - name: country-resource
+    description: Country Resource
+  - name: cv-info-resource
+    description: Cv Info Resource
+  - name: cv-item-resource
+    description: Cv Item Resource
+  - name: cv-item-text-resource
+    description: Cv Item Text Resource
+  - name: cv-resource
+    description: Cv Resource
+  - name: fact-book-info-resource
+    description: Fact Book Info Resource
+  - name: fact-book-item-info-resource
+    description: Fact Book Item Info Resource
+  - name: fact-book-item-resource
+    description: Fact Book Item Resource
+  - name: fact-book-resource
+    description: Fact Book Resource
+  - name: organisation-resource
+    description: Organisation Resource
+  - name: person-resource
+    description: Person Resource
+  - name: primary-contact-info-resource
+    description: Primary Contact Info Resource
+  - name: primary-email-resource
+    description: Primary Email Resource
+  - name: primary-phone-resource
+    description: Primary Phone Resource
+  - name: public-profile-info-resource
+    description: Public Profile Info Resource
+  - name: public-profile-micro-blog-item-resource
+    description: Public Profile Micro Blog Item Resource
+  - name: public-profile-micro-blog-item-text-resource
+    description: Public Profile Micro Blog Item Text Resource
+  - name: public-profile-micro-blog-resource
+    description: Public Profile Micro Blog Resource
+  - name: public-profile-personal-resources-resource
+    description: Public Profile Personal Resources Resource
+  - name: public-profile-resource
+    description: Public Profile Resource
+  - name: public-profile-summary-item-resource
+    description: Public Profile Summary Item Resource
+  - name: public-profile-summary-resource
+    description: Public Profile Summary Resource
+  - name: region-resource
+    description: Region Resource
+  - name: settlement-resource
+    description: Settlement Resource
+  - name: territorial-unit-resource
+    description: Territorial Unit Resource
+  - name: user-jwt-controller
+    description: User JWT Controller
+  - name: user-resource
+    description: User Resource
 paths:
-  /mainDatas:
+  /api/_search/activities:
     get:
-      summary: List all pets
-      operationId: listMainData
       tags:
-        - main
+        - activity-resource
+      summary: searchActivities
+      operationId: searchActivitiesUsingGET
       parameters:
-        - name: limit
+        - name: query
           in: query
-          description: How many items to return at one time (max 100)
+          description: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ActivityDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /api/_search/activity-infos:
+    get:
+      tags:
+        - activity-info-resource
+      summary: searchActivityInfos
+      operationId: searchActivityInfosUsingGET
+      parameters:
+        - name: query
+          in: query
+          description: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ActivityInfoDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /api/_search/activity-item-infos:
+    get:
+      tags:
+        - activity-item-info-resource
+      summary: searchActivityItemInfos
+      operationId: searchActivityItemInfosUsingGET
+      parameters:
+        - name: query
+          in: query
+          description: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ActivityItemInfoDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /api/_search/activity-item-involveds:
+    get:
+      tags:
+        - activity-item-involved-resource
+      summary: searchActivityItemInvolveds
+      operationId: searchActivityItemInvolvedsUsingGET
+      parameters:
+        - name: query
+          in: query
+          description: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ActivityItemInvolvedDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /api/_search/activity-items:
+    get:
+      tags:
+        - activity-item-resource
+      summary: searchActivityItems
+      operationId: searchActivityItemsUsingGET
+      parameters:
+        - name: query
+          in: query
+          description: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ActivityItemDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /api/_search/addresses:
+    get:
+      tags:
+        - address-resource
+      summary: searchAddresses
+      operationId: searchAddressesUsingGET
+      parameters:
+        - name: query
+          in: query
+          description: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AddressDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /api/_search/countries:
+    get:
+      tags:
+        - country-resource
+      summary: searchCountries
+      operationId: searchCountriesUsingGET
+      parameters:
+        - name: query
+          in: query
+          description: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CountryDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /api/_search/cv-infos:
+    get:
+      tags:
+        - cv-info-resource
+      summary: searchCvInfos
+      operationId: searchCvInfosUsingGET
+      parameters:
+        - name: query
+          in: query
+          description: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CvInfoDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /api/_search/cv-item-texts:
+    get:
+      tags:
+        - cv-item-text-resource
+      summary: searchCvItemTexts
+      operationId: searchCvItemTextsUsingGET
+      parameters:
+        - name: query
+          in: query
+          description: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CvItemTextDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /api/_search/cv-items:
+    get:
+      tags:
+        - cv-item-resource
+      summary: searchCvItems
+      operationId: searchCvItemsUsingGET
+      parameters:
+        - name: query
+          in: query
+          description: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CvItemDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /api/_search/cvs:
+    get:
+      tags:
+        - cv-resource
+      summary: searchCvs
+      operationId: searchCvsUsingGET
+      parameters:
+        - name: query
+          in: query
+          description: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CvDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /api/_search/fact-book-infos:
+    get:
+      tags:
+        - fact-book-info-resource
+      summary: searchFactBookInfos
+      operationId: searchFactBookInfosUsingGET
+      parameters:
+        - name: query
+          in: query
+          description: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FactBookInfoDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /api/_search/fact-book-item-infos:
+    get:
+      tags:
+        - fact-book-item-info-resource
+      summary: searchFactBookItemInfos
+      operationId: searchFactBookItemInfosUsingGET
+      parameters:
+        - name: query
+          in: query
+          description: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FactBookItemInfoDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /api/_search/fact-book-items:
+    get:
+      tags:
+        - fact-book-item-resource
+      summary: searchFactBookItems
+      operationId: searchFactBookItemsUsingGET
+      parameters:
+        - name: page
+          in: query
+          description: Page number of the requested page
           required: false
           schema:
             type: integer
             format: int32
-      responses:
-        200:
-          description: An paged array of main data
-          headers:
-            x-next:
-              description: A link to the next page of responses
-              schema:
-                type: string
-          content:
-            application/json:    
-              schema:
-                $ref: "#/components/schemas/MainDatas"
-        default:
-          description: unexpected error
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-    post:
-      summary: Create a main data
-      operationId: createPets
-      tags:
-        - main
-      responses:
-        201:
-          description: Null response
-        default:
-          description: unexpected error
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Error"
-  /mainDatas/{id}:
-    get:
-      summary: Info for a specific data
-      operationId: showMainDataById
-      tags:
-        - main
-      parameters:
-        - name: id
-          in: path
+        - name: query
+          in: query
+          description: query
           required: true
-          description: The id of the data to retrieve
+          schema:
+            type: string
+        - name: size
+          in: query
+          description: Size of a page
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: sort
+          in: query
+          description: >-
+            Sorting criteria in the format: property(,asc|desc). Default sort
+            order is ascending. Multiple sort criteria are supported.
+          required: false
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FactBookItemDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /api/_search/fact-books:
+    get:
+      tags:
+        - fact-book-resource
+      summary: searchFactBooks
+      operationId: searchFactBooksUsingGET
+      parameters:
+        - name: page
+          in: query
+          description: Page number of the requested page
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: query
+          in: query
+          description: query
+          required: true
+          schema:
+            type: string
+        - name: size
+          in: query
+          description: Size of a page
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: sort
+          in: query
+          description: >-
+            Sorting criteria in the format: property(,asc|desc). Default sort
+            order is ascending. Multiple sort criteria are supported.
+          required: false
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FactBookDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /api/_search/organisations:
+    get:
+      tags:
+        - organisation-resource
+      summary: searchOrganisations
+      operationId: searchOrganisationsUsingGET
+      parameters:
+        - name: query
+          in: query
+          description: query
+          required: true
           schema:
             type: string
       responses:
-        200:
-          description: Expected response to a valid request
+        '200':
+          description: OK
           content:
-            application/json:
+            '*/*':
               schema:
-                $ref: "#/components/schemas/MainData"
-        default:
-          description: unexpected error
+                type: array
+                items:
+                  $ref: '#/components/schemas/OrganisationDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /api/_search/people:
+    get:
+      tags:
+        - person-resource
+      summary: searchPeople
+      operationId: searchPeopleUsingGET
+      parameters:
+        - name: query
+          in: query
+          description: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
           content:
-            application/json:
+            '*/*':
               schema:
-                $ref: "#/components/schemas/Error"
+                type: array
+                items:
+                  $ref: '#/components/schemas/PersonDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /api/_search/primary-contact-infos:
+    get:
+      tags:
+        - primary-contact-info-resource
+      summary: searchPrimaryContactInfos
+      operationId: searchPrimaryContactInfosUsingGET
+      parameters:
+        - name: query
+          in: query
+          description: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PrimaryContactInfoDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /api/_search/primary-emails:
+    get:
+      tags:
+        - primary-email-resource
+      summary: searchPrimaryEmails
+      operationId: searchPrimaryEmailsUsingGET
+      parameters:
+        - name: query
+          in: query
+          description: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PrimaryEmailDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /api/_search/primary-phones:
+    get:
+      tags:
+        - primary-phone-resource
+      summary: searchPrimaryPhones
+      operationId: searchPrimaryPhonesUsingGET
+      parameters:
+        - name: query
+          in: query
+          description: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PrimaryPhoneDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /api/_search/public-profile-infos:
+    get:
+      tags:
+        - public-profile-info-resource
+      summary: searchPublicProfileInfos
+      operationId: searchPublicProfileInfosUsingGET
+      parameters:
+        - name: query
+          in: query
+          description: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PublicProfileInfoDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /api/_search/public-profile-micro-blog-item-texts:
+    get:
+      tags:
+        - public-profile-micro-blog-item-text-resource
+      summary: searchPublicProfileMicroBlogItemTexts
+      operationId: searchPublicProfileMicroBlogItemTextsUsingGET
+      parameters:
+        - name: query
+          in: query
+          description: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PublicProfileMicroBlogItemTextDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /api/_search/public-profile-micro-blog-items:
+    get:
+      tags:
+        - public-profile-micro-blog-item-resource
+      summary: searchPublicProfileMicroBlogItems
+      operationId: searchPublicProfileMicroBlogItemsUsingGET
+      parameters:
+        - name: query
+          in: query
+          description: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PublicProfileMicroBlogItemDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /api/_search/public-profile-micro-blogs:
+    get:
+      tags:
+        - public-profile-micro-blog-resource
+      summary: searchPublicProfileMicroBlogs
+      operationId: searchPublicProfileMicroBlogsUsingGET
+      parameters:
+        - name: query
+          in: query
+          description: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PublicProfileMicroBlogDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /api/_search/public-profile-personal-resources:
+    get:
+      tags:
+        - public-profile-personal-resources-resource
+      summary: searchPublicProfilePersonalResources
+      operationId: searchPublicProfilePersonalResourcesUsingGET
+      parameters:
+        - name: query
+          in: query
+          description: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PublicProfilePersonalResourcesDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /api/_search/public-profile-summaries:
+    get:
+      tags:
+        - public-profile-summary-resource
+      summary: searchPublicProfileSummaries
+      operationId: searchPublicProfileSummariesUsingGET
+      parameters:
+        - name: query
+          in: query
+          description: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PublicProfileSummaryDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /api/_search/public-profile-summary-items:
+    get:
+      tags:
+        - public-profile-summary-item-resource
+      summary: searchPublicProfileSummaryItems
+      operationId: searchPublicProfileSummaryItemsUsingGET
+      parameters:
+        - name: query
+          in: query
+          description: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PublicProfileSummaryItemDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /api/_search/public-profiles:
+    get:
+      tags:
+        - public-profile-resource
+      summary: searchPublicProfiles
+      operationId: searchPublicProfilesUsingGET
+      parameters:
+        - name: query
+          in: query
+          description: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PublicProfileDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /api/_search/regions:
+    get:
+      tags:
+        - region-resource
+      summary: searchRegions
+      operationId: searchRegionsUsingGET
+      parameters:
+        - name: query
+          in: query
+          description: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RegionDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /api/_search/settlements:
+    get:
+      tags:
+        - settlement-resource
+      summary: searchSettlements
+      operationId: searchSettlementsUsingGET
+      parameters:
+        - name: query
+          in: query
+          description: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SettlementDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /api/_search/territorial-units:
+    get:
+      tags:
+        - territorial-unit-resource
+      summary: searchTerritorialUnits
+      operationId: searchTerritorialUnitsUsingGET
+      parameters:
+        - name: query
+          in: query
+          description: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TerritorialUnitDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  '/api/_search/users/{query}':
+    get:
+      tags:
+        - user-resource
+      summary: search
+      operationId: searchUsingGET
+      parameters:
+        - name: query
+          in: path
+          description: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /api/account:
+    get:
+      tags:
+        - account-resource
+      summary: getAccount
+      operationId: getAccountUsingGET
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/UserDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+      parameters: []
+    post:
+      tags:
+        - account-resource
+      summary: saveAccount
+      operationId: saveAccountUsingPOST
+      requestBody:
+        $ref: '#/components/requestBodies/UserDTO'
+      responses:
+        '200':
+          description: OK
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+      parameters: []
+  /api/account/change-password:
+    post:
+      tags:
+        - account-resource
+      summary: changePassword
+      operationId: changePasswordUsingPOST
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PasswordChangeDTO'
+        description: passwordChangeDto
+        required: true
+      responses:
+        '200':
+          description: OK
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+      parameters: []
+  /api/account/reset-password/finish:
+    post:
+      tags:
+        - account-resource
+      summary: finishPasswordReset
+      operationId: finishPasswordResetUsingPOST
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/KeyAndPasswordVM'
+        description: keyAndPassword
+        required: true
+      responses:
+        '200':
+          description: OK
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+      parameters: []
+  /api/account/reset-password/init:
+    post:
+      tags:
+        - account-resource
+      summary: requestPasswordReset
+      operationId: requestPasswordResetUsingPOST
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: string
+        description: mail
+        required: true
+      responses:
+        '200':
+          description: OK
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+      parameters: []
+  /api/activate:
+    get:
+      tags:
+        - account-resource
+      summary: activateAccount
+      operationId: activateAccountUsingGET
+      parameters:
+        - name: key
+          in: query
+          description: key
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+  /api/activities:
+    get:
+      tags:
+        - activity-resource
+      summary: getAllActivities
+      operationId: getAllActivitiesUsingGET
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ActivityDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+      parameters: []
+    post:
+      tags:
+        - activity-resource
+      summary: createActivity
+      operationId: createActivityUsingPOST
+      requestBody:
+        $ref: '#/components/requestBodies/ActivityDTO'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ActivityDTO'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+      parameters: []
+    put:
+      tags:
+        - activity-resource
+      summary: updateActivity
+      operationId: updateActivityUsingPUT
+      requestBody:
+        $ref: '#/components/requestBodies/ActivityDTO'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ActivityDTO'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+      parameters: []
+  '/api/activities/{id}':
+    get:
+      tags:
+        - activity-resource
+      summary: getActivity
+      operationId: getActivityUsingGET
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ActivityDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+    delete:
+      tags:
+        - activity-resource
+      summary: deleteActivity
+      operationId: deleteActivityUsingDELETE
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      deprecated: false
+  /api/activity-infos:
+    get:
+      tags:
+        - activity-info-resource
+      summary: getAllActivityInfos
+      operationId: getAllActivityInfosUsingGET
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ActivityInfoDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+      parameters: []
+    post:
+      tags:
+        - activity-info-resource
+      summary: createActivityInfo
+      operationId: createActivityInfoUsingPOST
+      requestBody:
+        $ref: '#/components/requestBodies/ActivityInfoDTO'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ActivityInfoDTO'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+      parameters: []
+    put:
+      tags:
+        - activity-info-resource
+      summary: updateActivityInfo
+      operationId: updateActivityInfoUsingPUT
+      requestBody:
+        $ref: '#/components/requestBodies/ActivityInfoDTO'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ActivityInfoDTO'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+      parameters: []
+  '/api/activity-infos/{id}':
+    get:
+      tags:
+        - activity-info-resource
+      summary: getActivityInfo
+      operationId: getActivityInfoUsingGET
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ActivityInfoDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+    delete:
+      tags:
+        - activity-info-resource
+      summary: deleteActivityInfo
+      operationId: deleteActivityInfoUsingDELETE
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      deprecated: false
+  /api/activity-item-infos:
+    get:
+      tags:
+        - activity-item-info-resource
+      summary: getAllActivityItemInfos
+      operationId: getAllActivityItemInfosUsingGET
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ActivityItemInfoDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+      parameters: []
+    post:
+      tags:
+        - activity-item-info-resource
+      summary: createActivityItemInfo
+      operationId: createActivityItemInfoUsingPOST
+      requestBody:
+        $ref: '#/components/requestBodies/ActivityItemInfoDTO'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ActivityItemInfoDTO'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+      parameters: []
+    put:
+      tags:
+        - activity-item-info-resource
+      summary: updateActivityItemInfo
+      operationId: updateActivityItemInfoUsingPUT
+      requestBody:
+        $ref: '#/components/requestBodies/ActivityItemInfoDTO'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ActivityItemInfoDTO'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+      parameters: []
+  '/api/activity-item-infos/{id}':
+    get:
+      tags:
+        - activity-item-info-resource
+      summary: getActivityItemInfo
+      operationId: getActivityItemInfoUsingGET
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ActivityItemInfoDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+    delete:
+      tags:
+        - activity-item-info-resource
+      summary: deleteActivityItemInfo
+      operationId: deleteActivityItemInfoUsingDELETE
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      deprecated: false
+  /api/activity-item-involveds:
+    get:
+      tags:
+        - activity-item-involved-resource
+      summary: getAllActivityItemInvolveds
+      operationId: getAllActivityItemInvolvedsUsingGET
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ActivityItemInvolvedDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+      parameters: []
+    post:
+      tags:
+        - activity-item-involved-resource
+      summary: createActivityItemInvolved
+      operationId: createActivityItemInvolvedUsingPOST
+      requestBody:
+        $ref: '#/components/requestBodies/ActivityItemInvolvedDTO'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ActivityItemInvolvedDTO'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+      parameters: []
+    put:
+      tags:
+        - activity-item-involved-resource
+      summary: updateActivityItemInvolved
+      operationId: updateActivityItemInvolvedUsingPUT
+      requestBody:
+        $ref: '#/components/requestBodies/ActivityItemInvolvedDTO'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ActivityItemInvolvedDTO'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+      parameters: []
+  '/api/activity-item-involveds/{id}':
+    get:
+      tags:
+        - activity-item-involved-resource
+      summary: getActivityItemInvolved
+      operationId: getActivityItemInvolvedUsingGET
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ActivityItemInvolvedDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+    delete:
+      tags:
+        - activity-item-involved-resource
+      summary: deleteActivityItemInvolved
+      operationId: deleteActivityItemInvolvedUsingDELETE
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      deprecated: false
+  /api/activity-items:
+    get:
+      tags:
+        - activity-item-resource
+      summary: getAllActivityItems
+      operationId: getAllActivityItemsUsingGET
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ActivityItemDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+      parameters: []
+    post:
+      tags:
+        - activity-item-resource
+      summary: createActivityItem
+      operationId: createActivityItemUsingPOST
+      requestBody:
+        $ref: '#/components/requestBodies/ActivityItemDTO'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ActivityItemDTO'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+      parameters: []
+    put:
+      tags:
+        - activity-item-resource
+      summary: updateActivityItem
+      operationId: updateActivityItemUsingPUT
+      requestBody:
+        $ref: '#/components/requestBodies/ActivityItemDTO'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ActivityItemDTO'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+      parameters: []
+  '/api/activity-items/{id}':
+    get:
+      tags:
+        - activity-item-resource
+      summary: getActivityItem
+      operationId: getActivityItemUsingGET
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ActivityItemDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+    delete:
+      tags:
+        - activity-item-resource
+      summary: deleteActivityItem
+      operationId: deleteActivityItemUsingDELETE
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      deprecated: false
+  /api/addresses:
+    get:
+      tags:
+        - address-resource
+      summary: getAllAddresses
+      operationId: getAllAddressesUsingGET
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AddressDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+      parameters: []
+    post:
+      tags:
+        - address-resource
+      summary: createAddress
+      operationId: createAddressUsingPOST
+      requestBody:
+        $ref: '#/components/requestBodies/AddressDTO'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AddressDTO'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+      parameters: []
+    put:
+      tags:
+        - address-resource
+      summary: updateAddress
+      operationId: updateAddressUsingPUT
+      requestBody:
+        $ref: '#/components/requestBodies/AddressDTO'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AddressDTO'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+      parameters: []
+  '/api/addresses/{id}':
+    get:
+      tags:
+        - address-resource
+      summary: getAddress
+      operationId: getAddressUsingGET
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AddressDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+    delete:
+      tags:
+        - address-resource
+      summary: deleteAddress
+      operationId: deleteAddressUsingDELETE
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      deprecated: false
+  /api/authenticate:
+    get:
+      tags:
+        - account-resource
+      summary: isAuthenticated
+      operationId: isAuthenticatedUsingGET
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+      parameters: []
+    post:
+      tags:
+        - user-jwt-controller
+      summary: authorize
+      operationId: authorizeUsingPOST
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginVM'
+        description: loginVM
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/JWTToken'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+      parameters: []
+  /api/countries:
+    get:
+      tags:
+        - country-resource
+      summary: getAllCountries
+      operationId: getAllCountriesUsingGET
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CountryDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+      parameters: []
+    post:
+      tags:
+        - country-resource
+      summary: createCountry
+      operationId: createCountryUsingPOST
+      requestBody:
+        $ref: '#/components/requestBodies/CountryDTO'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CountryDTO'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+      parameters: []
+    put:
+      tags:
+        - country-resource
+      summary: updateCountry
+      operationId: updateCountryUsingPUT
+      requestBody:
+        $ref: '#/components/requestBodies/CountryDTO'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CountryDTO'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+      parameters: []
+  '/api/countries/{id}':
+    get:
+      tags:
+        - country-resource
+      summary: getCountry
+      operationId: getCountryUsingGET
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CountryDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+    delete:
+      tags:
+        - country-resource
+      summary: deleteCountry
+      operationId: deleteCountryUsingDELETE
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      deprecated: false
+  /api/cv-infos:
+    get:
+      tags:
+        - cv-info-resource
+      summary: getAllCvInfos
+      operationId: getAllCvInfosUsingGET
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CvInfoDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+      parameters: []
+    post:
+      tags:
+        - cv-info-resource
+      summary: createCvInfo
+      operationId: createCvInfoUsingPOST
+      requestBody:
+        $ref: '#/components/requestBodies/CvInfoDTO'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CvInfoDTO'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+      parameters: []
+    put:
+      tags:
+        - cv-info-resource
+      summary: updateCvInfo
+      operationId: updateCvInfoUsingPUT
+      requestBody:
+        $ref: '#/components/requestBodies/CvInfoDTO'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CvInfoDTO'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+      parameters: []
+  '/api/cv-infos/{id}':
+    get:
+      tags:
+        - cv-info-resource
+      summary: getCvInfo
+      operationId: getCvInfoUsingGET
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CvInfoDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+    delete:
+      tags:
+        - cv-info-resource
+      summary: deleteCvInfo
+      operationId: deleteCvInfoUsingDELETE
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      deprecated: false
+  /api/cv-item-texts:
+    get:
+      tags:
+        - cv-item-text-resource
+      summary: getAllCvItemTexts
+      operationId: getAllCvItemTextsUsingGET
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CvItemTextDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+      parameters: []
+    post:
+      tags:
+        - cv-item-text-resource
+      summary: createCvItemText
+      operationId: createCvItemTextUsingPOST
+      requestBody:
+        $ref: '#/components/requestBodies/CvItemTextDTO'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CvItemTextDTO'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+      parameters: []
+    put:
+      tags:
+        - cv-item-text-resource
+      summary: updateCvItemText
+      operationId: updateCvItemTextUsingPUT
+      requestBody:
+        $ref: '#/components/requestBodies/CvItemTextDTO'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CvItemTextDTO'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+      parameters: []
+  '/api/cv-item-texts/{id}':
+    get:
+      tags:
+        - cv-item-text-resource
+      summary: getCvItemText
+      operationId: getCvItemTextUsingGET
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CvItemTextDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+    delete:
+      tags:
+        - cv-item-text-resource
+      summary: deleteCvItemText
+      operationId: deleteCvItemTextUsingDELETE
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      deprecated: false
+  /api/cv-items:
+    get:
+      tags:
+        - cv-item-resource
+      summary: getAllCvItems
+      operationId: getAllCvItemsUsingGET
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CvItemDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+      parameters: []
+    post:
+      tags:
+        - cv-item-resource
+      summary: createCvItem
+      operationId: createCvItemUsingPOST
+      requestBody:
+        $ref: '#/components/requestBodies/CvItemDTO'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CvItemDTO'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+      parameters: []
+    put:
+      tags:
+        - cv-item-resource
+      summary: updateCvItem
+      operationId: updateCvItemUsingPUT
+      requestBody:
+        $ref: '#/components/requestBodies/CvItemDTO'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CvItemDTO'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+      parameters: []
+  '/api/cv-items/{id}':
+    get:
+      tags:
+        - cv-item-resource
+      summary: getCvItem
+      operationId: getCvItemUsingGET
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CvItemDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+    delete:
+      tags:
+        - cv-item-resource
+      summary: deleteCvItem
+      operationId: deleteCvItemUsingDELETE
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      deprecated: false
+  /api/cvs:
+    get:
+      tags:
+        - cv-resource
+      summary: getAllCvs
+      operationId: getAllCvsUsingGET
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CvDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+      parameters: []
+    post:
+      tags:
+        - cv-resource
+      summary: createCv
+      operationId: createCvUsingPOST
+      requestBody:
+        $ref: '#/components/requestBodies/CvDTO'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CvDTO'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+      parameters: []
+    put:
+      tags:
+        - cv-resource
+      summary: updateCv
+      operationId: updateCvUsingPUT
+      requestBody:
+        $ref: '#/components/requestBodies/CvDTO'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CvDTO'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+      parameters: []
+  '/api/cvs/{id}':
+    get:
+      tags:
+        - cv-resource
+      summary: getCv
+      operationId: getCvUsingGET
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CvDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+    delete:
+      tags:
+        - cv-resource
+      summary: deleteCv
+      operationId: deleteCvUsingDELETE
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      deprecated: false
+  /api/fact-book-infos:
+    get:
+      tags:
+        - fact-book-info-resource
+      summary: getAllFactBookInfos
+      operationId: getAllFactBookInfosUsingGET
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FactBookInfoDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+      parameters: []
+    post:
+      tags:
+        - fact-book-info-resource
+      summary: createFactBookInfo
+      operationId: createFactBookInfoUsingPOST
+      requestBody:
+        $ref: '#/components/requestBodies/FactBookInfoDTO'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/FactBookInfoDTO'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+      parameters: []
+    put:
+      tags:
+        - fact-book-info-resource
+      summary: updateFactBookInfo
+      operationId: updateFactBookInfoUsingPUT
+      requestBody:
+        $ref: '#/components/requestBodies/FactBookInfoDTO'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/FactBookInfoDTO'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+      parameters: []
+  '/api/fact-book-infos/{id}':
+    get:
+      tags:
+        - fact-book-info-resource
+      summary: getFactBookInfo
+      operationId: getFactBookInfoUsingGET
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/FactBookInfoDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+    delete:
+      tags:
+        - fact-book-info-resource
+      summary: deleteFactBookInfo
+      operationId: deleteFactBookInfoUsingDELETE
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      deprecated: false
+  /api/fact-book-item-infos:
+    get:
+      tags:
+        - fact-book-item-info-resource
+      summary: getAllFactBookItemInfos
+      operationId: getAllFactBookItemInfosUsingGET
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FactBookItemInfoDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+      parameters: []
+    post:
+      tags:
+        - fact-book-item-info-resource
+      summary: createFactBookItemInfo
+      operationId: createFactBookItemInfoUsingPOST
+      requestBody:
+        $ref: '#/components/requestBodies/FactBookItemInfoDTO'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/FactBookItemInfoDTO'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+      parameters: []
+    put:
+      tags:
+        - fact-book-item-info-resource
+      summary: updateFactBookItemInfo
+      operationId: updateFactBookItemInfoUsingPUT
+      requestBody:
+        $ref: '#/components/requestBodies/FactBookItemInfoDTO'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/FactBookItemInfoDTO'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+      parameters: []
+  '/api/fact-book-item-infos/{id}':
+    get:
+      tags:
+        - fact-book-item-info-resource
+      summary: getFactBookItemInfo
+      operationId: getFactBookItemInfoUsingGET
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/FactBookItemInfoDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+    delete:
+      tags:
+        - fact-book-item-info-resource
+      summary: deleteFactBookItemInfo
+      operationId: deleteFactBookItemInfoUsingDELETE
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      deprecated: false
+  /api/fact-book-items:
+    get:
+      tags:
+        - fact-book-item-resource
+      summary: getAllFactBookItems
+      operationId: getAllFactBookItemsUsingGET
+      parameters:
+        - name: eagerload
+          in: query
+          description: eagerload
+          required: false
+          schema:
+            type: boolean
+            default: false
+        - name: page
+          in: query
+          description: Page number of the requested page
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: size
+          in: query
+          description: Size of a page
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: sort
+          in: query
+          description: >-
+            Sorting criteria in the format: property(,asc|desc). Default sort
+            order is ascending. Multiple sort criteria are supported.
+          required: false
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FactBookItemDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+    post:
+      tags:
+        - fact-book-item-resource
+      summary: createFactBookItem
+      operationId: createFactBookItemUsingPOST
+      requestBody:
+        $ref: '#/components/requestBodies/FactBookItemDTO'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/FactBookItemDTO'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+      parameters: []
+    put:
+      tags:
+        - fact-book-item-resource
+      summary: updateFactBookItem
+      operationId: updateFactBookItemUsingPUT
+      requestBody:
+        $ref: '#/components/requestBodies/FactBookItemDTO'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/FactBookItemDTO'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+      parameters: []
+  '/api/fact-book-items/{id}':
+    get:
+      tags:
+        - fact-book-item-resource
+      summary: getFactBookItem
+      operationId: getFactBookItemUsingGET
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/FactBookItem'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+    delete:
+      tags:
+        - fact-book-item-resource
+      summary: deleteFactBookItem
+      operationId: deleteFactBookItemUsingDELETE
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      deprecated: false
+  /api/fact-books:
+    get:
+      tags:
+        - fact-book-resource
+      summary: getAllFactBooks
+      operationId: getAllFactBooksUsingGET
+      parameters:
+        - name: page
+          in: query
+          description: Page number of the requested page
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: size
+          in: query
+          description: Size of a page
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: sort
+          in: query
+          description: >-
+            Sorting criteria in the format: property(,asc|desc). Default sort
+            order is ascending. Multiple sort criteria are supported.
+          required: false
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FactBookDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+    post:
+      tags:
+        - fact-book-resource
+      summary: createFactBook
+      operationId: createFactBookUsingPOST
+      requestBody:
+        $ref: '#/components/requestBodies/FactBookDTO'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/FactBookDTO'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+      parameters: []
+    put:
+      tags:
+        - fact-book-resource
+      summary: updateFactBook
+      operationId: updateFactBookUsingPUT
+      requestBody:
+        $ref: '#/components/requestBodies/FactBookDTO'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/FactBookDTO'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+      parameters: []
+  '/api/fact-books/{id}':
+    get:
+      tags:
+        - fact-book-resource
+      summary: getFactBook
+      operationId: getFactBookUsingGET
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/FactBook'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+    delete:
+      tags:
+        - fact-book-resource
+      summary: deleteFactBook
+      operationId: deleteFactBookUsingDELETE
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      deprecated: false
+  /api/organisations:
+    get:
+      tags:
+        - organisation-resource
+      summary: getAllOrganisations
+      operationId: getAllOrganisationsUsingGET
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/OrganisationDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+      parameters: []
+    post:
+      tags:
+        - organisation-resource
+      summary: createOrganisation
+      operationId: createOrganisationUsingPOST
+      requestBody:
+        $ref: '#/components/requestBodies/OrganisationDTO'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/OrganisationDTO'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+      parameters: []
+    put:
+      tags:
+        - organisation-resource
+      summary: updateOrganisation
+      operationId: updateOrganisationUsingPUT
+      requestBody:
+        $ref: '#/components/requestBodies/OrganisationDTO'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/OrganisationDTO'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+      parameters: []
+  '/api/organisations/{id}':
+    get:
+      tags:
+        - organisation-resource
+      summary: getOrganisation
+      operationId: getOrganisationUsingGET
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/OrganisationDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+    delete:
+      tags:
+        - organisation-resource
+      summary: deleteOrganisation
+      operationId: deleteOrganisationUsingDELETE
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      deprecated: false
+  /api/people:
+    get:
+      tags:
+        - person-resource
+      summary: getAllPeople
+      operationId: getAllPeopleUsingGET
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PersonDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+      parameters: []
+    post:
+      tags:
+        - person-resource
+      summary: createPerson
+      operationId: createPersonUsingPOST
+      requestBody:
+        $ref: '#/components/requestBodies/PersonDTO'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PersonDTO'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+      parameters: []
+    put:
+      tags:
+        - person-resource
+      summary: updatePerson
+      operationId: updatePersonUsingPUT
+      requestBody:
+        $ref: '#/components/requestBodies/PersonDTO'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PersonDTO'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+      parameters: []
+  '/api/people/{id}':
+    get:
+      tags:
+        - person-resource
+      summary: getPerson
+      operationId: getPersonUsingGET
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PersonDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+    delete:
+      tags:
+        - person-resource
+      summary: deletePerson
+      operationId: deletePersonUsingDELETE
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      deprecated: false
+  /api/primary-contact-infos:
+    get:
+      tags:
+        - primary-contact-info-resource
+      summary: getAllPrimaryContactInfos
+      operationId: getAllPrimaryContactInfosUsingGET
+      parameters:
+        - name: filter
+          in: query
+          description: filter
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PrimaryContactInfoDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+    post:
+      tags:
+        - primary-contact-info-resource
+      summary: createPrimaryContactInfo
+      operationId: createPrimaryContactInfoUsingPOST
+      requestBody:
+        $ref: '#/components/requestBodies/PrimaryContactInfoDTO'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PrimaryContactInfoDTO'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+      parameters: []
+    put:
+      tags:
+        - primary-contact-info-resource
+      summary: updatePrimaryContactInfo
+      operationId: updatePrimaryContactInfoUsingPUT
+      requestBody:
+        $ref: '#/components/requestBodies/PrimaryContactInfoDTO'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PrimaryContactInfoDTO'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+      parameters: []
+  '/api/primary-contact-infos/{id}':
+    get:
+      tags:
+        - primary-contact-info-resource
+      summary: getPrimaryContactInfo
+      operationId: getPrimaryContactInfoUsingGET
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PrimaryContactInfoDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+    delete:
+      tags:
+        - primary-contact-info-resource
+      summary: deletePrimaryContactInfo
+      operationId: deletePrimaryContactInfoUsingDELETE
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      deprecated: false
+  /api/primary-emails:
+    get:
+      tags:
+        - primary-email-resource
+      summary: getAllPrimaryEmails
+      operationId: getAllPrimaryEmailsUsingGET
+      parameters:
+        - name: filter
+          in: query
+          description: filter
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PrimaryEmailDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+    post:
+      tags:
+        - primary-email-resource
+      summary: createPrimaryEmail
+      operationId: createPrimaryEmailUsingPOST
+      requestBody:
+        $ref: '#/components/requestBodies/PrimaryEmailDTO'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PrimaryEmailDTO'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+      parameters: []
+    put:
+      tags:
+        - primary-email-resource
+      summary: updatePrimaryEmail
+      operationId: updatePrimaryEmailUsingPUT
+      requestBody:
+        $ref: '#/components/requestBodies/PrimaryEmailDTO'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PrimaryEmailDTO'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+      parameters: []
+  '/api/primary-emails/{id}':
+    get:
+      tags:
+        - primary-email-resource
+      summary: getPrimaryEmail
+      operationId: getPrimaryEmailUsingGET
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PrimaryEmailDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+    delete:
+      tags:
+        - primary-email-resource
+      summary: deletePrimaryEmail
+      operationId: deletePrimaryEmailUsingDELETE
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      deprecated: false
+  /api/primary-phones:
+    get:
+      tags:
+        - primary-phone-resource
+      summary: getAllPrimaryPhones
+      operationId: getAllPrimaryPhonesUsingGET
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PrimaryPhoneDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+      parameters: []
+    post:
+      tags:
+        - primary-phone-resource
+      summary: createPrimaryPhone
+      operationId: createPrimaryPhoneUsingPOST
+      requestBody:
+        $ref: '#/components/requestBodies/PrimaryPhoneDTO'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PrimaryPhoneDTO'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+      parameters: []
+    put:
+      tags:
+        - primary-phone-resource
+      summary: updatePrimaryPhone
+      operationId: updatePrimaryPhoneUsingPUT
+      requestBody:
+        $ref: '#/components/requestBodies/PrimaryPhoneDTO'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PrimaryPhoneDTO'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+      parameters: []
+  '/api/primary-phones/{id}':
+    get:
+      tags:
+        - primary-phone-resource
+      summary: getPrimaryPhone
+      operationId: getPrimaryPhoneUsingGET
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PrimaryPhoneDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+    delete:
+      tags:
+        - primary-phone-resource
+      summary: deletePrimaryPhone
+      operationId: deletePrimaryPhoneUsingDELETE
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      deprecated: false
+  /api/public-profile-infos:
+    get:
+      tags:
+        - public-profile-info-resource
+      summary: getAllPublicProfileInfos
+      operationId: getAllPublicProfileInfosUsingGET
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PublicProfileInfoDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+      parameters: []
+    post:
+      tags:
+        - public-profile-info-resource
+      summary: createPublicProfileInfo
+      operationId: createPublicProfileInfoUsingPOST
+      requestBody:
+        $ref: '#/components/requestBodies/PublicProfileInfoDTO'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PublicProfileInfoDTO'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+      parameters: []
+    put:
+      tags:
+        - public-profile-info-resource
+      summary: updatePublicProfileInfo
+      operationId: updatePublicProfileInfoUsingPUT
+      requestBody:
+        $ref: '#/components/requestBodies/PublicProfileInfoDTO'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PublicProfileInfoDTO'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+      parameters: []
+  '/api/public-profile-infos/{id}':
+    get:
+      tags:
+        - public-profile-info-resource
+      summary: getPublicProfileInfo
+      operationId: getPublicProfileInfoUsingGET
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PublicProfileInfoDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+    delete:
+      tags:
+        - public-profile-info-resource
+      summary: deletePublicProfileInfo
+      operationId: deletePublicProfileInfoUsingDELETE
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      deprecated: false
+  /api/public-profile-micro-blog-item-texts:
+    get:
+      tags:
+        - public-profile-micro-blog-item-text-resource
+      summary: getAllPublicProfileMicroBlogItemTexts
+      operationId: getAllPublicProfileMicroBlogItemTextsUsingGET
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PublicProfileMicroBlogItemTextDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+      parameters: []
+    post:
+      tags:
+        - public-profile-micro-blog-item-text-resource
+      summary: createPublicProfileMicroBlogItemText
+      operationId: createPublicProfileMicroBlogItemTextUsingPOST
+      requestBody:
+        $ref: '#/components/requestBodies/PublicProfileMicroBlogItemTextDTO'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PublicProfileMicroBlogItemTextDTO'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+      parameters: []
+    put:
+      tags:
+        - public-profile-micro-blog-item-text-resource
+      summary: updatePublicProfileMicroBlogItemText
+      operationId: updatePublicProfileMicroBlogItemTextUsingPUT
+      requestBody:
+        $ref: '#/components/requestBodies/PublicProfileMicroBlogItemTextDTO'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PublicProfileMicroBlogItemTextDTO'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+      parameters: []
+  '/api/public-profile-micro-blog-item-texts/{id}':
+    get:
+      tags:
+        - public-profile-micro-blog-item-text-resource
+      summary: getPublicProfileMicroBlogItemText
+      operationId: getPublicProfileMicroBlogItemTextUsingGET
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PublicProfileMicroBlogItemTextDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+    delete:
+      tags:
+        - public-profile-micro-blog-item-text-resource
+      summary: deletePublicProfileMicroBlogItemText
+      operationId: deletePublicProfileMicroBlogItemTextUsingDELETE
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      deprecated: false
+  /api/public-profile-micro-blog-items:
+    get:
+      tags:
+        - public-profile-micro-blog-item-resource
+      summary: getAllPublicProfileMicroBlogItems
+      operationId: getAllPublicProfileMicroBlogItemsUsingGET
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PublicProfileMicroBlogItemDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+      parameters: []
+    post:
+      tags:
+        - public-profile-micro-blog-item-resource
+      summary: createPublicProfileMicroBlogItem
+      operationId: createPublicProfileMicroBlogItemUsingPOST
+      requestBody:
+        $ref: '#/components/requestBodies/PublicProfileMicroBlogItemDTO'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PublicProfileMicroBlogItemDTO'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+      parameters: []
+    put:
+      tags:
+        - public-profile-micro-blog-item-resource
+      summary: updatePublicProfileMicroBlogItem
+      operationId: updatePublicProfileMicroBlogItemUsingPUT
+      requestBody:
+        $ref: '#/components/requestBodies/PublicProfileMicroBlogItemDTO'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PublicProfileMicroBlogItemDTO'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+      parameters: []
+  '/api/public-profile-micro-blog-items/{id}':
+    get:
+      tags:
+        - public-profile-micro-blog-item-resource
+      summary: getPublicProfileMicroBlogItem
+      operationId: getPublicProfileMicroBlogItemUsingGET
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PublicProfileMicroBlogItemDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+    delete:
+      tags:
+        - public-profile-micro-blog-item-resource
+      summary: deletePublicProfileMicroBlogItem
+      operationId: deletePublicProfileMicroBlogItemUsingDELETE
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      deprecated: false
+  /api/public-profile-micro-blogs:
+    get:
+      tags:
+        - public-profile-micro-blog-resource
+      summary: getAllPublicProfileMicroBlogs
+      operationId: getAllPublicProfileMicroBlogsUsingGET
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PublicProfileMicroBlogDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+      parameters: []
+    post:
+      tags:
+        - public-profile-micro-blog-resource
+      summary: createPublicProfileMicroBlog
+      operationId: createPublicProfileMicroBlogUsingPOST
+      requestBody:
+        $ref: '#/components/requestBodies/PublicProfileMicroBlogDTO'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PublicProfileMicroBlogDTO'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+      parameters: []
+    put:
+      tags:
+        - public-profile-micro-blog-resource
+      summary: updatePublicProfileMicroBlog
+      operationId: updatePublicProfileMicroBlogUsingPUT
+      requestBody:
+        $ref: '#/components/requestBodies/PublicProfileMicroBlogDTO'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PublicProfileMicroBlogDTO'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+      parameters: []
+  '/api/public-profile-micro-blogs/{id}':
+    get:
+      tags:
+        - public-profile-micro-blog-resource
+      summary: getPublicProfileMicroBlog
+      operationId: getPublicProfileMicroBlogUsingGET
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PublicProfileMicroBlogDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+    delete:
+      tags:
+        - public-profile-micro-blog-resource
+      summary: deletePublicProfileMicroBlog
+      operationId: deletePublicProfileMicroBlogUsingDELETE
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      deprecated: false
+  /api/public-profile-personal-resources:
+    get:
+      tags:
+        - public-profile-personal-resources-resource
+      summary: getAllPublicProfilePersonalResources
+      operationId: getAllPublicProfilePersonalResourcesUsingGET
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PublicProfilePersonalResourcesDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+      parameters: []
+    post:
+      tags:
+        - public-profile-personal-resources-resource
+      summary: createPublicProfilePersonalResources
+      operationId: createPublicProfilePersonalResourcesUsingPOST
+      requestBody:
+        $ref: '#/components/requestBodies/PublicProfilePersonalResourcesDTO'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PublicProfilePersonalResourcesDTO'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+      parameters: []
+    put:
+      tags:
+        - public-profile-personal-resources-resource
+      summary: updatePublicProfilePersonalResources
+      operationId: updatePublicProfilePersonalResourcesUsingPUT
+      requestBody:
+        $ref: '#/components/requestBodies/PublicProfilePersonalResourcesDTO'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PublicProfilePersonalResourcesDTO'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+      parameters: []
+  '/api/public-profile-personal-resources/{id}':
+    get:
+      tags:
+        - public-profile-personal-resources-resource
+      summary: getPublicProfilePersonalResources
+      operationId: getPublicProfilePersonalResourcesUsingGET
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PublicProfilePersonalResourcesDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+    delete:
+      tags:
+        - public-profile-personal-resources-resource
+      summary: deletePublicProfilePersonalResources
+      operationId: deletePublicProfilePersonalResourcesUsingDELETE
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      deprecated: false
+  /api/public-profile-summaries:
+    get:
+      tags:
+        - public-profile-summary-resource
+      summary: getAllPublicProfileSummaries
+      operationId: getAllPublicProfileSummariesUsingGET
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PublicProfileSummaryDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+      parameters: []
+    post:
+      tags:
+        - public-profile-summary-resource
+      summary: createPublicProfileSummary
+      operationId: createPublicProfileSummaryUsingPOST
+      requestBody:
+        $ref: '#/components/requestBodies/PublicProfileSummaryDTO'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PublicProfileSummaryDTO'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+      parameters: []
+    put:
+      tags:
+        - public-profile-summary-resource
+      summary: updatePublicProfileSummary
+      operationId: updatePublicProfileSummaryUsingPUT
+      requestBody:
+        $ref: '#/components/requestBodies/PublicProfileSummaryDTO'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PublicProfileSummaryDTO'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+      parameters: []
+  '/api/public-profile-summaries/{id}':
+    get:
+      tags:
+        - public-profile-summary-resource
+      summary: getPublicProfileSummary
+      operationId: getPublicProfileSummaryUsingGET
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PublicProfileSummaryDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+    delete:
+      tags:
+        - public-profile-summary-resource
+      summary: deletePublicProfileSummary
+      operationId: deletePublicProfileSummaryUsingDELETE
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      deprecated: false
+  /api/public-profile-summary-items:
+    get:
+      tags:
+        - public-profile-summary-item-resource
+      summary: getAllPublicProfileSummaryItems
+      operationId: getAllPublicProfileSummaryItemsUsingGET
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PublicProfileSummaryItemDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+      parameters: []
+    post:
+      tags:
+        - public-profile-summary-item-resource
+      summary: createPublicProfileSummaryItem
+      operationId: createPublicProfileSummaryItemUsingPOST
+      requestBody:
+        $ref: '#/components/requestBodies/PublicProfileSummaryItemDTO'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PublicProfileSummaryItemDTO'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+      parameters: []
+    put:
+      tags:
+        - public-profile-summary-item-resource
+      summary: updatePublicProfileSummaryItem
+      operationId: updatePublicProfileSummaryItemUsingPUT
+      requestBody:
+        $ref: '#/components/requestBodies/PublicProfileSummaryItemDTO'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PublicProfileSummaryItemDTO'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+      parameters: []
+  '/api/public-profile-summary-items/{id}':
+    get:
+      tags:
+        - public-profile-summary-item-resource
+      summary: getPublicProfileSummaryItem
+      operationId: getPublicProfileSummaryItemUsingGET
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PublicProfileSummaryItemDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+    delete:
+      tags:
+        - public-profile-summary-item-resource
+      summary: deletePublicProfileSummaryItem
+      operationId: deletePublicProfileSummaryItemUsingDELETE
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      deprecated: false
+  /api/public-profiles:
+    get:
+      tags:
+        - public-profile-resource
+      summary: getAllPublicProfiles
+      operationId: getAllPublicProfilesUsingGET
+      parameters:
+        - name: filter
+          in: query
+          description: filter
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PublicProfileDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+    post:
+      tags:
+        - public-profile-resource
+      summary: createPublicProfile
+      operationId: createPublicProfileUsingPOST
+      requestBody:
+        $ref: '#/components/requestBodies/PublicProfileDTO'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PublicProfileDTO'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+      parameters: []
+    put:
+      tags:
+        - public-profile-resource
+      summary: updatePublicProfile
+      operationId: updatePublicProfileUsingPUT
+      requestBody:
+        $ref: '#/components/requestBodies/PublicProfileDTO'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PublicProfileDTO'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+      parameters: []
+  '/api/public-profiles/{id}':
+    get:
+      tags:
+        - public-profile-resource
+      summary: getPublicProfile
+      operationId: getPublicProfileUsingGET
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PublicProfileDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+    delete:
+      tags:
+        - public-profile-resource
+      summary: deletePublicProfile
+      operationId: deletePublicProfileUsingDELETE
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      deprecated: false
+  /api/regions:
+    get:
+      tags:
+        - region-resource
+      summary: getAllRegions
+      operationId: getAllRegionsUsingGET
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RegionDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+      parameters: []
+    post:
+      tags:
+        - region-resource
+      summary: createRegion
+      operationId: createRegionUsingPOST
+      requestBody:
+        $ref: '#/components/requestBodies/RegionDTO'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RegionDTO'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+      parameters: []
+    put:
+      tags:
+        - region-resource
+      summary: updateRegion
+      operationId: updateRegionUsingPUT
+      requestBody:
+        $ref: '#/components/requestBodies/RegionDTO'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RegionDTO'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+      parameters: []
+  '/api/regions/{id}':
+    get:
+      tags:
+        - region-resource
+      summary: getRegion
+      operationId: getRegionUsingGET
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RegionDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+    delete:
+      tags:
+        - region-resource
+      summary: deleteRegion
+      operationId: deleteRegionUsingDELETE
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      deprecated: false
+  /api/register:
+    post:
+      tags:
+        - account-resource
+      summary: registerAccount
+      operationId: registerAccountUsingPOST
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ManagedUserVM'
+        description: managedUserVM
+        required: true
+      responses:
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+      parameters: []
+  /api/settlements:
+    get:
+      tags:
+        - settlement-resource
+      summary: getAllSettlements
+      operationId: getAllSettlementsUsingGET
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SettlementDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+      parameters: []
+    post:
+      tags:
+        - settlement-resource
+      summary: createSettlement
+      operationId: createSettlementUsingPOST
+      requestBody:
+        $ref: '#/components/requestBodies/SettlementDTO'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/SettlementDTO'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+      parameters: []
+    put:
+      tags:
+        - settlement-resource
+      summary: updateSettlement
+      operationId: updateSettlementUsingPUT
+      requestBody:
+        $ref: '#/components/requestBodies/SettlementDTO'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/SettlementDTO'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+      parameters: []
+  '/api/settlements/{id}':
+    get:
+      tags:
+        - settlement-resource
+      summary: getSettlement
+      operationId: getSettlementUsingGET
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/SettlementDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+    delete:
+      tags:
+        - settlement-resource
+      summary: deleteSettlement
+      operationId: deleteSettlementUsingDELETE
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      deprecated: false
+  /api/territorial-units:
+    get:
+      tags:
+        - territorial-unit-resource
+      summary: getAllTerritorialUnits
+      operationId: getAllTerritorialUnitsUsingGET
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TerritorialUnitDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+      parameters: []
+    post:
+      tags:
+        - territorial-unit-resource
+      summary: createTerritorialUnit
+      operationId: createTerritorialUnitUsingPOST
+      requestBody:
+        $ref: '#/components/requestBodies/TerritorialUnitDTO'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TerritorialUnitDTO'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+      parameters: []
+    put:
+      tags:
+        - territorial-unit-resource
+      summary: updateTerritorialUnit
+      operationId: updateTerritorialUnitUsingPUT
+      requestBody:
+        $ref: '#/components/requestBodies/TerritorialUnitDTO'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TerritorialUnitDTO'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+      parameters: []
+  '/api/territorial-units/{id}':
+    get:
+      tags:
+        - territorial-unit-resource
+      summary: getTerritorialUnit
+      operationId: getTerritorialUnitUsingGET
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TerritorialUnitDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+    delete:
+      tags:
+        - territorial-unit-resource
+      summary: deleteTerritorialUnit
+      operationId: deleteTerritorialUnitUsingDELETE
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      deprecated: false
+  /api/users:
+    get:
+      tags:
+        - user-resource
+      summary: getAllUsers
+      operationId: getAllUsersUsingGET
+      parameters:
+        - name: page
+          in: query
+          description: Page number of the requested page
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: size
+          in: query
+          description: Size of a page
+          required: false
+          schema:
+            type: integer
+            format: int32
+        - name: sort
+          in: query
+          description: >-
+            Sorting criteria in the format: property(,asc|desc). Default sort
+            order is ascending. Multiple sort criteria are supported.
+          required: false
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UserDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+    post:
+      tags:
+        - user-resource
+      summary: createUser
+      operationId: createUserUsingPOST
+      requestBody:
+        $ref: '#/components/requestBodies/UserDTO'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/User'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+      parameters: []
+    put:
+      tags:
+        - user-resource
+      summary: updateUser
+      operationId: updateUserUsingPUT
+      requestBody:
+        $ref: '#/components/requestBodies/UserDTO'
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/UserDTO'
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+      parameters: []
+  /api/users/authorities:
+    get:
+      tags:
+        - user-resource
+      summary: getAuthorities
+      operationId: getAuthoritiesUsingGET
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  type: string
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+      parameters: []
+  '/api/users/{login:^(?>[a-zA-Z0-9!$&*+=?^_`{|}~.-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*)|(?>[_.@A-Za-z0-9-]+)$}':
+    get:
+      tags:
+        - user-resource
+      summary: getUser
+      operationId: getUserUsingGET
+      parameters:
+        - name: login
+          in: path
+          description: login
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/UserDTO'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      deprecated: false
+    delete:
+      tags:
+        - user-resource
+      summary: deleteUser
+      operationId: deleteUserUsingDELETE
+      parameters:
+        - name: login
+          in: path
+          description: login
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      deprecated: false
+servers:
+  - url: '//localhost:9000/'
 components:
+  requestBodies:
+    PrimaryPhoneDTO:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PrimaryPhoneDTO'
+      description: primaryPhoneDTO
+      required: true
+    ActivityItemDTO:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ActivityItemDTO'
+      description: activityItemDTO
+      required: true
+    CvDTO:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/CvDTO'
+      description: cvDTO
+      required: true
+    RegionDTO:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/RegionDTO'
+      description: regionDTO
+      required: true
+    UserDTO:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UserDTO'
+      description: userDTO
+      required: true
+    FactBookDTO:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/FactBookDTO'
+      description: factBookDTO
+      required: true
+    ActivityItemInfoDTO:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ActivityItemInfoDTO'
+      description: activityItemInfoDTO
+      required: true
+    CvItemTextDTO:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/CvItemTextDTO'
+      description: cvItemTextDTO
+      required: true
+    CvInfoDTO:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/CvInfoDTO'
+      description: cvInfoDTO
+      required: true
+    PublicProfilePersonalResourcesDTO:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PublicProfilePersonalResourcesDTO'
+      description: publicProfilePersonalResourcesDTO
+      required: true
+    PublicProfileMicroBlogItemDTO:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PublicProfileMicroBlogItemDTO'
+      description: publicProfileMicroBlogItemDTO
+      required: true
+    PublicProfileInfoDTO:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PublicProfileInfoDTO'
+      description: publicProfileInfoDTO
+      required: true
+    PublicProfileSummaryItemDTO:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PublicProfileSummaryItemDTO'
+      description: publicProfileSummaryItemDTO
+      required: true
+    PrimaryEmailDTO:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PrimaryEmailDTO'
+      description: primaryEmailDTO
+      required: true
+    CvItemDTO:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/CvItemDTO'
+      description: cvItemDTO
+      required: true
+    OrganisationDTO:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/OrganisationDTO'
+      description: organisationDTO
+      required: true
+    ActivityDTO:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ActivityDTO'
+      description: activityDTO
+      required: true
+    ActivityInfoDTO:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ActivityInfoDTO'
+      description: activityInfoDTO
+      required: true
+    ActivityItemInvolvedDTO:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ActivityItemInvolvedDTO'
+      description: activityItemInvolvedDTO
+      required: true
+    AddressDTO:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/AddressDTO'
+      description: addressDTO
+      required: true
+    CountryDTO:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/CountryDTO'
+      description: countryDTO
+      required: true
+    FactBookInfoDTO:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/FactBookInfoDTO'
+      description: factBookInfoDTO
+      required: true
+    FactBookItemInfoDTO:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/FactBookItemInfoDTO'
+      description: factBookItemInfoDTO
+      required: true
+    FactBookItemDTO:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/FactBookItemDTO'
+      description: factBookItemDTO
+      required: true
+    PersonDTO:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PersonDTO'
+      description: personDTO
+      required: true
+    PrimaryContactInfoDTO:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PrimaryContactInfoDTO'
+      description: primaryContactInfoDTO
+      required: true
+    PublicProfileMicroBlogItemTextDTO:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PublicProfileMicroBlogItemTextDTO'
+      description: publicProfileMicroBlogItemTextDTO
+      required: true
+    PublicProfileMicroBlogDTO:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PublicProfileMicroBlogDTO'
+      description: publicProfileMicroBlogDTO
+      required: true
+    PublicProfileSummaryDTO:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PublicProfileSummaryDTO'
+      description: publicProfileSummaryDTO
+      required: true
+    PublicProfileDTO:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PublicProfileDTO'
+      description: publicProfileDTO
+      required: true
+    SettlementDTO:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/SettlementDTO'
+      description: settlementDTO
+      required: true
+    TerritorialUnitDTO:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/TerritorialUnitDTO'
+      description: territorialUnitDTO
+      required: true
   schemas:
-    MainData:
-      type: object
-      required:
-        - id
-        - name
-      properties:
-        id:
-          type: integer
-          format: int64
-        name:
-          type: string
-        locations:
-          $ref: "#/components/schemas/Locations"
-        collections:
-          $ref: "#/components/schemas/Collections"
-    MainDatas:
-      type: array
-      items:
-        $ref: "#/components/schemas/MainData"
-    Location:
+    ActivityDTO:
       type: object
       properties:
         id:
           type: integer
           format: int64
-        mainData:
-          $ref: "#/components/schemas/MainData"
-        name:
+        organisationId:
+          type: integer
+          format: int32
+        personId:
+          type: integer
+          format: int32
+        personOrOrg:
           type: string
-    Locations:
-      type: array
-      items:
-        $ref: "#/components/schemas/Location"
-    Collection:
+          enum:
+            - PERSON
+            - ORGANISATION
+        sysName:
+          type: string
+      title: ActivityDTO
+    ActivityInfoDTO:
       type: object
       properties:
-        id:
+        activityId:
           type: integer
           format: int64
-        mainData:
-          $ref: "#/components/schemas/MainData"
-        heading:
+        activityName:
           type: string
-        items:
-          $ref: "#/components/schemas/Items"
-    Collections:
-      type: array
-      items:
-        $ref: "#/components/schemas/Collection"
-    Item:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-        collection:
-          $ref: "#/components/schemas/Collection"
-        title:
-          type: string
-        year:
-          type: string
-          format: date-time
         description:
           type: string
-    Items:
-      type: array
-      items:
-        $ref: "#/components/schemas/Item"
-    One:
+        id:
+          type: integer
+          format: int64
+        language:
+          type: string
+          enum:
+            - ESTONIAN
+            - FRENCH
+            - ENGLISH
+      title: ActivityInfoDTO
+    ActivityItemDTO:
       type: object
-      required:
-        - id
-        - title
+      properties:
+        activityId:
+          type: integer
+          format: int64
+        activityType:
+          type: string
+        endDate:
+          type: string
+          format: date
+        id:
+          type: integer
+          format: int64
+        startDate:
+          type: string
+          format: date
+      title: ActivityItemDTO
+    ActivityItemInfoDTO:
+      type: object
+      properties:
+        activityItemId:
+          type: integer
+          format: int64
+        activityName:
+          type: string
+        description:
+          type: string
+        id:
+          type: integer
+          format: int64
+        language:
+          type: string
+          enum:
+            - ESTONIAN
+            - FRENCH
+            - ENGLISH
+      title: ActivityItemInfoDTO
+    ActivityItemInvolvedDTO:
+      type: object
+      properties:
+        activityItemId:
+          type: integer
+          format: int64
+        id:
+          type: integer
+          format: int64
+        organisationId:
+          type: integer
+          format: int32
+        personId:
+          type: integer
+          format: int32
+        personOrOrganisation:
+          type: string
+          enum:
+            - PERSON
+            - ORGANISATION
+      title: ActivityItemInvolvedDTO
+    Address:
+      type: object
+      properties:
+        appNumber:
+          type: string
+        cityOrVillage:
+          $ref: '#/components/schemas/Settlement'
+        country:
+          $ref: '#/components/schemas/Country'
+        countyProvince:
+          $ref: '#/components/schemas/TerritorialUnit'
+        houseNumber:
+          type: string
+        id:
+          type: integer
+          format: int64
+        postalCode:
+          type: string
+        streetName:
+          type: string
+      title: Address
+    AddressDTO:
+      type: object
+      properties:
+        appNumber:
+          type: string
+        cityOrVillageId:
+          type: integer
+          format: int64
+        countryId:
+          type: integer
+          format: int64
+        countyProvinceId:
+          type: integer
+          format: int64
+        houseNumber:
+          type: string
+        id:
+          type: integer
+          format: int64
+        postalCode:
+          type: string
+        streetName:
+          type: string
+      title: AddressDTO
+    Country:
+      type: object
+      properties:
+        callingCode:
+          type: string
+        cctld:
+          type: string
+        id:
+          type: integer
+          format: int64
+        iso2:
+          type: string
+        iso3:
+          type: string
+        longName:
+          type: string
+        numcode:
+          type: string
+        region:
+          $ref: '#/components/schemas/Region'
+        settlements:
+          type: array
+          items:
+            $ref: '#/components/schemas/Settlement'
+        shortName:
+          type: string
+        territorialUnits:
+          type: array
+          items:
+            $ref: '#/components/schemas/TerritorialUnit'
+        unMember:
+          type: string
+      title: Country
+    CountryDTO:
+      type: object
+      properties:
+        callingCode:
+          type: string
+        cctld:
+          type: string
+        id:
+          type: integer
+          format: int64
+        iso2:
+          type: string
+        iso3:
+          type: string
+        longName:
+          type: string
+        numcode:
+          type: string
+        regionId:
+          type: integer
+          format: int64
+        shortName:
+          type: string
+        unMember:
+          type: string
+      title: CountryDTO
+    CvDTO:
+      type: object
       properties:
         id:
           type: integer
           format: int64
+        personId:
+          type: integer
+          format: int64
+        sysName:
+          type: string
+      title: CvDTO
+    CvInfoDTO:
+      type: object
+      properties:
+        cvId:
+          type: integer
+          format: int64
+        description:
+          type: string
+        id:
+          type: integer
+          format: int64
+        language:
+          type: string
+          enum:
+            - ESTONIAN
+            - FRENCH
+            - ENGLISH
         title:
           type: string
-        twos:
-          $ref: "#/components/schemas/Twos"
-        created:
-          type: string
-          format: date-time
-        modified:
-          type: string
-          format: date-time
-    Ones:
-      type: array
-      items:
-        $ref: "#/components/schemas/One"
-    Two:
+      title: CvInfoDTO
+    CvItemDTO:
       type: object
-      required:
-        - id
-        - title
+      properties:
+        activityId:
+          type: integer
+          format: int64
+        cvId:
+          type: integer
+          format: int64
+        cvItemType:
+          type: string
+          enum:
+            - JOB
+            - ACTIVITY
+            - MILESTONE
+            - OTHER
+        endDate:
+          type: string
+          format: date
+        id:
+          type: integer
+          format: int64
+        organisationId:
+          type: integer
+          format: int32
+        startDate:
+          type: string
+          format: date
+        sysName:
+          type: string
+      title: CvItemDTO
+    CvItemTextDTO:
+      type: object
+      properties:
+        cvItemId:
+          type: integer
+          format: int64
+        description:
+          type: string
+        id:
+          type: integer
+          format: int64
+        language:
+          type: string
+          enum:
+            - ESTONIAN
+            - FRENCH
+            - ENGLISH
+        name:
+          type: string
+      title: CvItemTextDTO
+    FactBook:
+      type: object
+      properties:
+        factBookInfos:
+          type: array
+          items:
+            $ref: '#/components/schemas/FactBookInfo'
+        factBookItems:
+          type: array
+          items:
+            $ref: '#/components/schemas/FactBookItem'
+        id:
+          type: integer
+          format: int64
+        sysName:
+          type: string
+      title: FactBook
+    FactBookDTO:
+      type: object
       properties:
         id:
           type: integer
           format: int64
-        one:
-          $ref: "#/components/schemas/One"
+        sysName:
+          type: string
+      title: FactBookDTO
+    FactBookInfo:
+      type: object
+      properties:
+        description:
+          type: string
+        factBook:
+          $ref: '#/components/schemas/FactBook'
+        id:
+          type: integer
+          format: int64
+        language:
+          type: string
+          enum:
+            - ESTONIAN
+            - FRENCH
+            - ENGLISH
         title:
           type: string
-        threes:
-          $ref: "#/components/schemas/Threes"
-        created:
+      title: FactBookInfo
+    FactBookInfoDTO:
+      type: object
+      properties:
+        description:
           type: string
-          format: date-time
-        modified:
+        factBookId:
+          type: integer
+          format: int64
+        id:
+          type: integer
+          format: int64
+        language:
           type: string
-          format: date-time
-    Twos:
-      type: array
-      items:
-        $ref: "#/components/schemas/Two"
-    Three:
+          enum:
+            - ESTONIAN
+            - FRENCH
+            - ENGLISH
+        title:
+          type: string
+      title: FactBookInfoDTO
+    FactBookItem:
+      type: object
+      properties:
+        begin:
+          type: string
+          format: date
+        currents:
+          type: array
+          items:
+            $ref: '#/components/schemas/FactBookItem'
+        end:
+          type: string
+          format: date
+        factBook:
+          $ref: '#/components/schemas/FactBook'
+        factBookItemInfos:
+          type: array
+          items:
+            $ref: '#/components/schemas/FactBookItemInfo'
+        id:
+          type: integer
+          format: int64
+        isActiveOrAlive:
+          type: boolean
+        itemContentType:
+          type: string
+          enum:
+            - PERSON
+            - ORGANISATION
+            - FACT
+            - TERM
+            - WORK
+            - MISC
+        itemProperties:
+          type: string
+          enum:
+            - HASDATES
+            - HASAUDIO
+            - HASVIDEO
+            - HASIMAGE
+        organisation:
+          $ref: '#/components/schemas/Organisation'
+        person:
+          $ref: '#/components/schemas/Person'
+        staticName:
+          type: string
+        sysName:
+          type: string
+      title: FactBookItem
+    FactBookItemDTO:
+      type: object
+      properties:
+        begin:
+          type: string
+          format: date
+        currents:
+          type: array
+          items:
+            $ref: '#/components/schemas/FactBookItemDTO'
+        end:
+          type: string
+          format: date
+        factBookId:
+          type: integer
+          format: int64
+        id:
+          type: integer
+          format: int64
+        isActiveOrAlive:
+          type: boolean
+        itemContentType:
+          type: string
+          enum:
+            - PERSON
+            - ORGANISATION
+            - FACT
+            - TERM
+            - WORK
+            - MISC
+        itemProperties:
+          type: string
+          enum:
+            - HASDATES
+            - HASAUDIO
+            - HASVIDEO
+            - HASIMAGE
+        organisationId:
+          type: integer
+          format: int32
+        personId:
+          type: integer
+          format: int32
+        staticName:
+          type: string
+        sysName:
+          type: string
+      title: FactBookItemDTO
+    FactBookItemInfo:
+      type: object
+      properties:
+        description:
+          type: string
+        factBookItem:
+          $ref: '#/components/schemas/FactBookItem'
+        id:
+          type: integer
+          format: int64
+        language:
+          type: string
+          enum:
+            - ESTONIAN
+            - FRENCH
+            - ENGLISH
+        name:
+          type: string
+      title: FactBookItemInfo
+    FactBookItemInfoDTO:
+      type: object
+      properties:
+        description:
+          type: string
+        factBookItemId:
+          type: integer
+          format: int64
+        id:
+          type: integer
+          format: int64
+        language:
+          type: string
+          enum:
+            - ESTONIAN
+            - FRENCH
+            - ENGLISH
+        name:
+          type: string
+      title: FactBookItemInfoDTO
+    JWTToken:
+      type: object
+      properties:
+        id_token:
+          type: string
+      title: JWTToken
+    KeyAndPasswordVM:
+      type: object
+      properties:
+        key:
+          type: string
+        newPassword:
+          type: string
+      title: KeyAndPasswordVM
+    LoginVM:
       type: object
       required:
-        - id
-        - title
+        - password
+        - username
+      properties:
+        password:
+          type: string
+          minLength: 4
+          maxLength: 100
+        rememberMe:
+          type: boolean
+        username:
+          type: string
+          minLength: 1
+          maxLength: 50
+      title: LoginVM
+    ManagedUserVM:
+      type: object
+      properties:
+        activated:
+          type: boolean
+        authorities:
+          type: array
+          items:
+            type: string
+        createdBy:
+          type: string
+        createdDate:
+          type: string
+          format: date-time
+        email:
+          type: string
+          minLength: 5
+          maxLength: 254
+        firstName:
+          type: string
+          minLength: 0
+          maxLength: 50
+        id:
+          type: integer
+          format: int64
+        imageUrl:
+          type: string
+          minLength: 0
+          maxLength: 256
+        langKey:
+          type: string
+          minLength: 2
+          maxLength: 10
+        lastModifiedBy:
+          type: string
+        lastModifiedDate:
+          type: string
+          format: date-time
+        lastName:
+          type: string
+          minLength: 0
+          maxLength: 50
+        login:
+          type: string
+          minLength: 1
+          maxLength: 50
+          pattern: >-
+            ^(?>[a-zA-Z0-9!$&*+=?^_`{|}~.-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*)|(?>[_.@A-Za-z0-9-]+)$
+        password:
+          type: string
+          minLength: 4
+          maxLength: 100
+      title: ManagedUserVM
+    Organisation:
+      type: object
+      required:
+        - knownName
+      properties:
+        created:
+          type: string
+          format: date
+        ended:
+          type: string
+          format: date
+        id:
+          type: integer
+          format: int64
+        isActive:
+          type: boolean
+        knownAbbreviationName:
+          type: string
+        knownName:
+          type: string
+        officialRegistryName:
+          type: string
+        primaryContact:
+          $ref: '#/components/schemas/PrimaryContactInfo'
+        registryCode:
+          type: string
+        type:
+          type: string
+      title: Organisation
+    OrganisationDTO:
+      type: object
+      required:
+        - knownName
+      properties:
+        created:
+          type: string
+          format: date
+        ended:
+          type: string
+          format: date
+        id:
+          type: integer
+          format: int64
+        isActive:
+          type: boolean
+        knownAbbreviationName:
+          type: string
+        knownName:
+          type: string
+        officialRegistryName:
+          type: string
+        primaryContactId:
+          type: integer
+          format: int64
+        registryCode:
+          type: string
+        type:
+          type: string
+      title: OrganisationDTO
+    PasswordChangeDTO:
+      type: object
+      properties:
+        currentPassword:
+          type: string
+        newPassword:
+          type: string
+      title: PasswordChangeDTO
+    Person:
+      type: object
+      required:
+        - born
+        - firstName
+        - lastName
+      properties:
+        born:
+          type: string
+          format: date
+        deceased:
+          type: string
+          format: date
+        firstName:
+          type: string
+        id:
+          type: integer
+          format: int64
+        isAlive:
+          type: boolean
+        lastName:
+          type: string
+        middleName:
+          type: string
+        nationalId:
+          type: string
+        primaryContact:
+          $ref: '#/components/schemas/PrimaryContactInfo'
+      title: Person
+    PersonDTO:
+      type: object
+      required:
+        - born
+        - firstName
+        - lastName
+      properties:
+        born:
+          type: string
+          format: date
+        deceased:
+          type: string
+          format: date
+        firstName:
+          type: string
+        id:
+          type: integer
+          format: int64
+        isAlive:
+          type: boolean
+        lastName:
+          type: string
+        middleName:
+          type: string
+        nationalId:
+          type: string
+        primaryContactId:
+          type: integer
+          format: int64
+      title: PersonDTO
+    PrimaryContactInfo:
+      type: object
+      properties:
+        address:
+          $ref: '#/components/schemas/Address'
+        email:
+          $ref: '#/components/schemas/PrimaryEmail'
+        id:
+          type: integer
+          format: int64
+        personOrOrg:
+          type: string
+          enum:
+            - PERSON
+            - ORGANISATION
+        primaryPhones:
+          type: array
+          items:
+            $ref: '#/components/schemas/PrimaryPhone'
+      title: PrimaryContactInfo
+    PrimaryContactInfoDTO:
+      type: object
+      properties:
+        addressId:
+          type: integer
+          format: int64
+        emailId:
+          type: integer
+          format: int64
+        id:
+          type: integer
+          format: int64
+        personOrOrg:
+          type: string
+          enum:
+            - PERSON
+            - ORGANISATION
+      title: PrimaryContactInfoDTO
+    PrimaryEmail:
+      type: object
+      properties:
+        email:
+          type: string
+        id:
+          type: integer
+          format: int64
+      title: PrimaryEmail
+    PrimaryEmailDTO:
+      type: object
+      properties:
+        email:
+          type: string
+        id:
+          type: integer
+          format: int64
+      title: PrimaryEmailDTO
+    PrimaryPhone:
+      type: object
+      properties:
+        formattedNumber:
+          type: string
+        id:
+          type: integer
+          format: int64
+        phoneNumber:
+          type: integer
+          format: int32
+        primaryContact:
+          $ref: '#/components/schemas/PrimaryContactInfo'
+        type:
+          type: string
+          enum:
+            - MOBILE
+            - DESKTOP
+      title: PrimaryPhone
+    PrimaryPhoneDTO:
+      type: object
+      properties:
+        formattedNumber:
+          type: string
+        id:
+          type: integer
+          format: int64
+        phoneNumber:
+          type: integer
+          format: int32
+        primaryContactId:
+          type: integer
+          format: int64
+        type:
+          type: string
+          enum:
+            - MOBILE
+            - DESKTOP
+      title: PrimaryPhoneDTO
+    PublicProfileDTO:
+      type: object
       properties:
         id:
           type: integer
           format: int64
-        two:
-           $ref: "#/components/schemas/Two"
+        personId:
+          type: integer
+          format: int32
+        sysName:
+          type: string
+      title: PublicProfileDTO
+    PublicProfileInfoDTO:
+      type: object
+      properties:
+        description:
+          type: string
+        id:
+          type: integer
+          format: int64
+        language:
+          type: string
+          enum:
+            - ESTONIAN
+            - FRENCH
+            - ENGLISH
+        publicProfileId:
+          type: integer
+          format: int64
         title:
           type: string
-        fours:
-          $ref: "#/components/schemas/Fours"
-        created:
-          type: string
-          format: date-time
-        modified:
-          type: string
-          format: date-time
-    Threes:
-      type: array
-      items:
-        $ref: "#/components/schemas/Three"
-    Four:
+      title: PublicProfileInfoDTO
+    PublicProfileMicroBlogDTO:
       type: object
-      required:
-        - id
-        - title
       properties:
         id:
           type: integer
           format: int64
-        three:
-           $ref: "#/components/schemas/Three"
-        title:
+        microblog:
           type: string
-        fives:
-          $ref: "#/components/schemas/Fives"
+        publicProfileId:
+          type: integer
+          format: int64
+      title: PublicProfileMicroBlogDTO
+    PublicProfileMicroBlogItemDTO:
+      type: object
+      properties:
         created:
           type: string
           format: date-time
-        modified:
+        fileAttachment:
           type: string
-          format: date-time
-    Fours:
-      type: array
-      items:
-        $ref: "#/components/schemas/Four"        
-    Five:
+        id:
+          type: integer
+          format: int64
+        personId:
+          type: integer
+          format: int32
+        publicProfileMicroBlogId:
+          type: integer
+          format: int64
+      title: PublicProfileMicroBlogItemDTO
+    PublicProfileMicroBlogItemTextDTO:
       type: object
-      required:
-        - id
-        - title
       properties:
         id:
           type: integer
           format: int64
-        four:
-           $ref: "#/components/schemas/Four"
+        language:
+          type: string
+          enum:
+            - ESTONIAN
+            - FRENCH
+            - ENGLISH
+        publicProfileMicroBlogItemId:
+          type: integer
+          format: int64
+        text:
+          type: string
+      title: PublicProfileMicroBlogItemTextDTO
+    PublicProfilePersonalResourcesDTO:
+      type: object
+      properties:
+        cvId:
+          type: integer
+          format: int64
+        factBookId:
+          type: integer
+          format: int64
+        id:
+          type: integer
+          format: int64
+        publicProfileId:
+          type: integer
+          format: int64
+        publicProfileSummaryId:
+          type: integer
+          format: int64
+        sysName:
+          type: string
+      title: PublicProfilePersonalResourcesDTO
+    PublicProfileSummaryDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        sysName:
+          type: string
+      title: PublicProfileSummaryDTO
+    PublicProfileSummaryItemDTO:
+      type: object
+      properties:
+        description:
+          type: string
+        id:
+          type: integer
+          format: int64
+        language:
+          type: string
+          enum:
+            - ESTONIAN
+            - FRENCH
+            - ENGLISH
+        publicProfileSummaryId:
+          type: integer
+          format: int64
         title:
           type: string
-        created:
+        uRL:
           type: string
-          format: date-time
-        modified:
-          type: string
-          format: date-time
-    Fives:
-      type: array
-      items:
-        $ref: "#/components/schemas/Five"
-    Error:
+      title: PublicProfileSummaryItemDTO
+    Region:
       type: object
-      required:
-        - code
-        - message
+      properties:
+        id:
+          type: integer
+          format: int64
+        regionName:
+          type: string
+      title: Region
+    RegionDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        regionName:
+          type: string
+      title: RegionDTO
+    Settlement:
+      type: object
       properties:
         code:
           type: integer
           format: int32
-        message:
+        country:
+          $ref: '#/components/schemas/Country'
+        countyProvince:
+          $ref: '#/components/schemas/TerritorialUnit'
+        id:
+          type: integer
+          format: int64
+        longName:
           type: string
+        shortName:
+          type: string
+        type:
+          type: string
+      title: Settlement
+    SettlementDTO:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        countryId:
+          type: integer
+          format: int64
+        countyProvinceId:
+          type: integer
+          format: int64
+        id:
+          type: integer
+          format: int64
+        longName:
+          type: string
+        shortName:
+          type: string
+        type:
+          type: string
+      title: SettlementDTO
+    TerritorialUnit:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        country:
+          $ref: '#/components/schemas/Country'
+        id:
+          type: integer
+          format: int64
+        longName:
+          type: string
+        settlements:
+          type: array
+          items:
+            $ref: '#/components/schemas/Settlement'
+        shortName:
+          type: string
+        type:
+          type: string
+      title: TerritorialUnit
+    TerritorialUnitDTO:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        countryId:
+          type: integer
+          format: int64
+        id:
+          type: integer
+          format: int64
+        longName:
+          type: string
+        shortName:
+          type: string
+        type:
+          type: string
+      title: TerritorialUnitDTO
+    User:
+      type: object
+      required:
+        - activated
+        - login
+      properties:
+        activated:
+          type: boolean
+        email:
+          type: string
+          minLength: 5
+          maxLength: 254
+        firstName:
+          type: string
+          minLength: 0
+          maxLength: 50
+        id:
+          type: integer
+          format: int64
+        imageUrl:
+          type: string
+          minLength: 0
+          maxLength: 256
+        langKey:
+          type: string
+          minLength: 2
+          maxLength: 10
+        lastName:
+          type: string
+          minLength: 0
+          maxLength: 50
+        login:
+          type: string
+          minLength: 1
+          maxLength: 50
+          pattern: >-
+            ^(?>[a-zA-Z0-9!$&*+=?^_`{|}~.-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*)|(?>[_.@A-Za-z0-9-]+)$
+        resetDate:
+          type: string
+          format: date-time
+      title: User
+    UserDTO:
+      type: object
+      properties:
+        activated:
+          type: boolean
+        authorities:
+          type: array
+          items:
+            type: string
+        createdBy:
+          type: string
+        createdDate:
+          type: string
+          format: date-time
+        email:
+          type: string
+          minLength: 5
+          maxLength: 254
+        firstName:
+          type: string
+          minLength: 0
+          maxLength: 50
+        id:
+          type: integer
+          format: int64
+        imageUrl:
+          type: string
+          minLength: 0
+          maxLength: 256
+        langKey:
+          type: string
+          minLength: 2
+          maxLength: 10
+        lastModifiedBy:
+          type: string
+        lastModifiedDate:
+          type: string
+          format: date-time
+        lastName:
+          type: string
+          minLength: 0
+          maxLength: 50
+        login:
+          type: string
+          minLength: 1
+          maxLength: 50
+          pattern: >-
+            ^(?>[a-zA-Z0-9!$&*+=?^_`{|}~.-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*)|(?>[_.@A-Za-z0-9-]+)$
+      title: UserDTO
+  links: {}
+  callbacks: {}
+security: []
